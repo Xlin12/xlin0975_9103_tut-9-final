@@ -24,3 +24,18 @@ final assessment
 - Influence: This concept inspired the staged reappearance of rectangles, semi-circles, and circles after the double-click event.
 
 ## A short technical explanation
+- Double-Click Event Listener:
+- - The canvas.addEventListener('dblclick', handleDoubleClick); sets up an event listener that triggers the handleDoubleClick function on a double-click.
+
+- Clear Canvas:
+- - The clearCanvas function empties the arrays storing the rectangles, semi-circles, and circles, effectively removing them from the canvas.
+
+- Initiate Appearance:
+- - The initiateAppearance function uses setTimeout to stagger the reappearance of each type of component.
+
+- Gradual Reappearance Functions:
+- - Functions like appearRectangles, appearSemiCircles, and appearCircles repopulate the respective arrays with their elements.
+
+- References:
+- - P5.js Library: Utilized for rendering and animating graphics on the canvas.<https://p5js.org/learn/interactivity.html>.
+- - JavaScript Event Handling: For handling double-click events.<https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener>.
