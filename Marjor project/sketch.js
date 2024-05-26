@@ -1,10 +1,6 @@
 let circles = [];
 let rectangles = [];
 let semiCircles = [];
-let showCircles = true;
-let showRectangles = true;
-let showSemiCircles = true;
-let reappearIndex = 0;
 
 class NeonCircle {
     constructor(x, y, diameter, angle, proportion) {
@@ -68,8 +64,70 @@ function setup() {
     imageMode(CENTER);
     pixelDensity(2);
 
+    // Setup double-click event
+    canvas.addEventListener('dblclick', handleDoubleClick);
+}
+
+function draw() {
+    background(0); // Set the background to black
+
+    // Draw rectangles
+    for (let rect of rectangles) {
+        rect.draw();
+    }
+
+    // Draw semi-circles
+    for (let semiCircle of semiCircles) {
+        semiCircle.draw();
+    }
+
+    // Draw circles
+    for (let circle of circles) {
+        circle.draw();
+    }
+}
+
+function handleDoubleClick() {
+    clearCanvas();
+    initiateAppearance();
+}
+
+function clearCanvas() {
+    rectangles = [];
+    semiCircles = [];
+    circles = [];
+}
+
+function initiateAppearance() {
+    setTimeout(appearRectangles, 1000);
+    setTimeout(appearSemiCircles, 2000);
+    setTimeout(appearCircles, 3000);
+}
+
+function appearRectangles() {
+    // Initialize rectangles
+    rectangles.push(new NeonRectangle(58, 595, 433, 90, color(142, 66, 70), color(0, 0, 0)));
+    rectangles.push(new NeonRectangle(82, 580, 325, 90, color(60, 100, 100), color(0, 0, 0)));
+    rectangles.push(new NeonRectangle(138, 582.5, 50, 83, color(0, 100, 100, 100), null));
+    rectangles.push(new NeonRectangle(193, 582.5, 62, 83, color(120, 100, 100, 100), null));
+    rectangles.push(new NeonRectangle(303, 582.5, 60, 85, color(120, 100, 100, 100), null));
+    rectangles.push(new NeonRectangle(0, 595, 58, 90, color(142, 66, 70), color(0, 0, 0)));
+    rectangles.push(new NeonRectangle(479, 595, 58, 90, color(142, 66, 70), color(0, 0, 0)));
+}
+
+function appearSemiCircles() {
+    // Initialize semi-circles
+    semiCircles.push(new NeonSemiCircle(163, 667, 55, 40, color(60, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(110.5, 668, 52, 55, color(120, 100, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(224, 667, 63, 85, color(60, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(223.5, 667, 57, 78, color(0, 100, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(278, 667, 48, 58, color(0, 100, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(333, 667, 60, 20, color(60, 100, 100)));
+    semiCircles.push(new NeonSemiCircle(384, 668, 41, 55, color(120, 100, 100, 100)));
+}
+
+function appearCircles() {
     // Initialize circles
-    // Circles on the left side
     circles.push(new NeonCircle(60, 0, 50, PI / 1.7, 0.4));
     circles.push(new NeonCircle(50, 55, 60, -PI / 2.2, 0.45));
     circles.push(new NeonCircle(55, 103, 33, PI / 2, 0.5));
@@ -78,7 +136,6 @@ function setup() {
     circles.push(new NeonCircle(109, 181, 55, -PI / 2.5, 0.4));
     circles.push(new NeonCircle(122, 245, 70, PI / 1.83, 0.45));
 
-    // Circles in the middle
     circles.push(new NeonCircle(160, 280, 40, PI, 0.5));
     circles.push(new NeonCircle(200, 287, 40, -PI / 10, 0.6));
     circles.push(new NeonCircle(237, 278, 30, PI / 1.05, 0.55));
@@ -93,7 +150,6 @@ function setup() {
     circles.push(new NeonCircle(195, 140, 40, PI / 1.68, 0.4));
     circles.push(new NeonCircle(322, 150, 37, PI / 2.4, 0.58));
 
-    // Circles on the right side
     circles.push(new NeonCircle(390, 240, 50, -PI / 2.5, 0.4));
     circles.push(new NeonCircle(396, 192, 40, PI / 2, 0.5));
     circles.push(new NeonCircle(396, 140, 60, -PI / 2, 0.5));
@@ -103,7 +159,6 @@ function setup() {
     circles.push(new NeonCircle(486, 120, 28, PI / 8, 0.5));
     circles.push(new NeonCircle(500, 100, 20, PI / 1.8, 0.45));
 
-    // Circles below
     circles.push(new NeonCircle(264, 340, 70, PI / 1.67, 0.4));
     circles.push(new NeonCircle(248, 417, 81, -PI / 2.25, 0.45));
     circles.push(new NeonCircle(250, 483, 45, PI / 2.22, 0.55));
@@ -113,89 +168,6 @@ function setup() {
     circles.push(new NeonCircle(164, 580, 50, PI / 200, 0.5));
     circles.push(new NeonCircle(283, 575, 40, PI / 10, 0.4));
     circles.push(new NeonCircle(332, 580, 60, PI / 1, 0.5));
-
-    // Initialize rectangles
-    rectangles.push(new NeonRectangle(58, 595, 433, 90, color(142, 66, 70), color(0, 0, 0)));
-    rectangles.push(new NeonRectangle(82, 580, 325, 90, color(60, 100, 100), color(0, 0, 0)));
-    rectangles.push(new NeonRectangle(138, 582.5, 50, 83, color(0, 100, 100, 100), null));
-    rectangles.push(new NeonRectangle(193, 582.5, 62, 83, color(120, 100, 100, 100), null));
-    rectangles.push(new NeonRectangle(303, 582.5, 60, 85, color(120, 100, 100, 100), null));
-    rectangles.push(new NeonRectangle(0, 595, 58, 90, color(142, 66, 70), color(0, 0, 0)));
-    rectangles.push(new NeonRectangle(479, 595, 58, 90, color(142, 66, 70), color(0, 0, 0)));
-
-    // Initialize semi-circles
-    semiCircles.push(new NeonSemiCircle(163, 667, 55, 40, color(60, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(110.5, 668, 52, 55, color(120, 100, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(224, 667, 63, 85, color(60, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(223.5, 667, 57, 78, color(0, 100, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(278, 667, 48, 58, color(0, 100, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(333, 667, 60, 20, color(60, 100, 100)));
-    semiCircles.push(new NeonSemiCircle(384, 668, 41, 55, color(120, 100, 100, 100)));
-}
-
-function draw() {
-    background(0); // Set the background to black
-
-    // Draw rectangles
-    if (showRectangles) {
-        for (let rect of rectangles) {
-            rect.draw();
-        }
-    }
-
-    // Draw semi-circles
-    if (showSemiCircles) {
-        for (let semiCircle of semiCircles) {
-            semiCircle.draw();
-        }
-    }
-
-    // Draw circles
-    if (showCircles) {
-        for (let circle of circles) {
-            circle.draw();
-        }
-    }
-}
-
-// Function to hide all shapes
-function hideAllShapes() {
-    showCircles = false;
-    showRectangles = false;
-    showSemiCircles = false;
-}
-
-// Function to gradually show shapes
-function graduallyShowShapes() {
-    showCircles = true;
-    showRectangles = true;
-    showSemiCircles = true;
-    reappearIndex = 0;
-    let totalShapes = circles.length + rectangles.length + semiCircles.length;
-
-    function showNextShape() {
-        if (reappearIndex < totalShapes) {
-            if (reappearIndex < circles.length) {
-                circles[reappearIndex].draw();
-            } else if (reappearIndex < circles.length + rectangles.length) {
-                rectangles[reappearIndex - circles.length].draw();
-            } else {
-                semiCircles[reappearIndex - circles.length - rectangles.length].draw();
-            }
-            reappearIndex++;
-            setTimeout(showNextShape, 100); // Adjust the interval as needed
-        }
-    }
-
-    showNextShape();
-}
-
-function mousePressed() {
-    hideAllShapes();
-}
-
-function doubleClicked() {
-    graduallyShowShapes();
 }
 
 function circleNeon(x, y, diameter, color1, color2, angle, proportion) {
