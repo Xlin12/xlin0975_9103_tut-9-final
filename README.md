@@ -19,6 +19,8 @@ final assessment
 
 ## Gradual Appearance Animation
 - GIF Reference: Loading animations where elements appear one after another, such as a series of dots or shapes gradually coming into view.
+![Circle animation](<readmelmages/circle animation.png>)
+![Transitions and Animations of circle and rectangle ](<readmelmages/Transitions and Animations.png>)
 - Influence: This concept inspired the staged reappearance of rectangles, semi-circles, and circles after the double-click event.
 
 ## A short technical explanation
